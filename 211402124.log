@@ -1,0 +1,143 @@
+MariaDB [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| bus_booking        |
+| busscheduledb      |
+| information_schema |
+| lab pw             |
+| lab7               |
+| lab_pwl            |
+| library_input      |
+| moovit             |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| prak_sbd           |
+| proweb             |
+| task_manager       |
+| tes                |
+| test               |
+| todolist           |
+| tubes              |
+| tubes pw           |
+| tubes1             |
+| tubes_pwl          |
+| tubes_sbd          |
+| vehicle_management |
+| website_laravel    |
++--------------------+
+24 rows in set (0.011 sec)
+
+MariaDB [(none)]> USE task_manager;
+Database changed
+MariaDB [task_manager]> SHOW TABLES;
++------------------------+
+| Tables_in_task_manager |
++------------------------+
+| failed_jobs            |
+| migrations             |
+| password_resets        |
+| personal_access_tokens |
+| task_categories        |
+| task_dailies           |
+| task_indicators        |
+| task_persons           |
+| task_plans             |
+| users                  |
++------------------------+
+10 rows in set (0.027 sec)
+
+MariaDB [task_manager]> SELECT * FROM task_categories;
++--------------------------------------+---------------+--------------------------------------------+------------+------------+
+| id                                   | category_name | description                                | created_at | updated_at |
++--------------------------------------+---------------+--------------------------------------------+------------+------------+
+| 229d48a0-a643-42c2-832f-882297db9003 | Analisis      | Tugas Analisis                             | NULL       | NULL       |
+| 72233152-7af0-4e89-94fc-d8d02e73aba8 | Administrasi  | Tugas yang berhubungan dengan administrasi | NULL       | NULL       |
+| e46f9318-ca1a-4a3d-a998-913c8fdf5917 | Teknikal      | Tugas Teknikal                             | NULL       | NULL       |
++--------------------------------------+---------------+--------------------------------------------+------------+------------+
+3 rows in set (0.002 sec)
+
+MariaDB [task_manager]> SELECT * FROM task_dailies;
+Empty set (0.003 sec)
+
+MariaDB [task_manager]> SELECT * FROM task_indicators;
++--------------------------------------+----------------+--------------+------+------------+------------+
+| id                                   | indicator_name | output_value | year | created_at | updated_at |
++--------------------------------------+----------------+--------------+------+------------+------------+
+| 5e72be09-384e-4097-8e78-c20e84d88112 | Indikator 2    |          100 | 2022 | NULL       | NULL       |
+| 669c981f-1bd6-47d5-b2ce-de568aaa160a | Indikator 1    |          100 | 2022 | NULL       | NULL       |
++--------------------------------------+----------------+--------------+------+------------+------------+
+2 rows in set (0.001 sec)
+
+MariaDB [task_manager]> SELECT * FROM task_persons;
++--------------------------------------+--------------------------------------+-------------------------------------------------------------------------------------------+------------+------------+
+| id                                   | task_id                              | teams                                                                                     | created_at | updated_at |
++--------------------------------------+--------------------------------------+-------------------------------------------------------------------------------------------+------------+------------+
+| ac7ee465-587f-4b8c-b937-e9c7868500f7 | 924eaa0e-c8f1-4132-a032-1d98c176a8c3 | {'teams':['72233152-7af0-4e89-94fc-d8d02e73aba8']}                                        | NULL       | NULL       |
+| f8d31da1-e112-432e-b272-da61bc40a954 | c96fdbd6-a3a4-42e3-b437-444ffd734a36 | {'teams':['72233152-7af0-4e89-94fc-d8d02e73aba8','51ed88b2-fb06-4606-81ba-088e9ed52d1a']} | NULL       | NULL       |
++--------------------------------------+--------------------------------------+-------------------------------------------------------------------------------------------+------------+------------+
+2 rows in set (0.018 sec)
+
+MariaDB [task_manager]> SELECT * FROM task_plans;
++--------------------------------------+-----------------------------------------+--------------------+-------------------+--------------------------------------+--------------------------------------+--------------------------------------+---------------+-------------+------------+------------+
+| id                                   | task_name                               | ask_duration_start | task_duration_end | user_create                          | category_id                          | indicators_id                        | task_priority | task_status | created_at | updated_at |
++--------------------------------------+-----------------------------------------+--------------------+-------------------+--------------------------------------+--------------------------------------+--------------------------------------+---------------+-------------+------------+------------+
+| 924eaa0e-c8f1-4132-a032-1d98c176a8c3 | Membuat Modul add_to_cart pada Aplikasi | 2022-06-10         | 2022-06-30        | 72233152-7af0-4e89-94fc-d8d02e73aba8 | 72233152-7af0-4e89-94fc-d8d02e73aba8 | 5e72be09-384e-4097-8e78-c20e84d88112 |             1 | Pending     | NULL       | NULL       |
+| c96fdbd6-a3a4-42e3-b437-444ffd734a36 | Menganalisa Data Kemahasiswaan          | 2022-06-10         | 2022-06-17        | 72233152-7af0-4e89-94fc-d8d02e73aba8 | e46f9318-ca1a-4a3d-a998-913c8fdf5917 | 669c981f-1bd6-47d5-b2ce-de568aaa160a |             2 | Process     | NULL       | NULL       |
+| f1ee037b-9135-41d2-9757-091391df4fb8 | Mendokumentasikan Code                  | 2022-06-10         | 2022-06-10        | 72233152-7af0-4e89-94fc-d8d02e73aba8 | 229d48a0-a643-42c2-832f-882297db9003 | 5e72be09-384e-4097-8e78-c20e84d88112 |             3 | Process     | NULL       | NULL       |
++--------------------------------------+-----------------------------------------+--------------------+-------------------+--------------------------------------+--------------------------------------+--------------------------------------+---------------+-------------+------------+------------+
+3 rows in set (0.001 sec)
+
+MariaDB [task_manager]> SELECT * FROM user;
+ERROR 1146 (42S02): Table 'task_manager.user' doesn't exist
+MariaDB [task_manager]> SELECT * FROM users;
++--------------------------------------+--------+---------------+-------------------+--------------+----------------+------------+------------+
+| id                                   | name   | email         | email_verified_at | password     | remember_token | created_at | updated_at |
++--------------------------------------+--------+---------------+-------------------+--------------+----------------+------------+------------+
+| 51ed88b2-fb06-4606-81ba-088e9ed52d1a | User B | userb@mail.co | NULL              | MD5('12345') | NULL           | NULL       | NULL       |
+| 72233152-7af0-4e89-94fc-d8d02e73aba8 | User A | user@mail.co  | NULL              | MD5('12345') | NULL           | NULL       | NULL       |
++--------------------------------------+--------+---------------+-------------------+--------------+----------------+------------+------------+
+2 rows in set (0.001 sec)
+
+MariaDB [task_manager]> SELECT 
+    -> a.id, a.task_name, b.task_status, b.task_comments, d.category_name as 'Category',
+    -> DATEDIFF(a.task_duration_end, a.task_duration_start) as 'Lama Pengerjaan',
+    -> c.name as 'Create By', (SELECT name from users where users.id = task_dailies.user_verify_id ) as 'Verified By'
+    -> FROM task_plans a
+    -> RIGHT JOIN task_dailies b ON a.id = b.plan_id
+    -> INNER JOIN users c ON b.id = c.id
+    -> RIGHT JOIN task_categories d ON a.category_id = d.id
+    -> ;
+ERROR 1054 (42S22): Unknown column 'a.task_duration_start' in 'field list'
+MariaDB [task_manager]> INSERT INTO `task_manager`.`task_dailies` (`id`, `user_id`, `plan_id`, `task_status`, `user_verify_id`, `task_comments`) VALUES ('fb940b68-e866-11ec-8fea-0242ac120002', '51ed88b2-fb06-4606-81ba-088e9ed52d1a', 'c96fdbd6-a3a4-42e3-b437-444ffd734a36', 'Process', '72233152-7af0-4e89-94fc-d8d02e73aba8', 'OKE');
+Query OK, 1 row affected, 2 warnings (0.102 sec)
+
+MariaDB [task_manager]> SELECT
+    ->     -> a.id, a.task_name, b.task_status, b.task_comments, d.category_name as 'Category',
+    ->     -> DATEDIFF(a.task_duration_end, a.task_duration_start) as 'Lama Pengerjaan',
+    ->     -> c.name as 'Create By', (SELECT name from users where users.id = task_dailies.user_verify_id ) as 'Verified By'
+    ->     -> FROM task_plans a
+    ->     -> RIGHT JOIN task_dailies b ON a.id = b.plan_id
+    ->     -> INNER JOIN users c ON b.id = c.id
+    ->     -> RIGHT JOIN task_categories d ON a.category_id = d.id
+    ->     -> 
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '> a.id, a.task_name, b.task_status, b.task_comments, d.category_name as 'Cate...' at line 2
+MariaDB [task_manager]> SELECT * FROM task_dailies;
++--------------------------------------+--------------------------------------+--------------------------------------+-------------+--------------------+--------------------------------------+------------+---------------+------------+------------+
+| id                                   | user_id                              | plan_id                              | task_status | task_complete_date | user_verify_id                       | task_prove | task_comments | created_at | updated_at |
++--------------------------------------+--------------------------------------+--------------------------------------+-------------+--------------------+--------------------------------------+------------+---------------+------------+------------+
+| fb940b68-e866-11ec-8fea-0242ac120002 | 51ed88b2-fb06-4606-81ba-088e9ed52d1a | c96fdbd6-a3a4-42e3-b437-444ffd734a36 | Process     | 0000-00-00         | 72233152-7af0-4e89-94fc-d8d02e73aba8 |            | OKE           | NULL       | NULL       |
++--------------------------------------+--------------------------------------+--------------------------------------+-------------+--------------------+--------------------------------------+------------+---------------+------------+------------+
+1 row in set (0.031 sec)
+
+MariaDB [task_manager]> SELECT
+    ->     ->     -> a.id, a.task_name, b.task_status, b.task_comments, d.category_name as 'Category',
+    ->     ->     -> DATEDIFF(a.task_duration_end, a.task_duration_start) as 'Lama Pengerjaan',
+    ->     ->     -> c.name as 'Create By', (SELECT name from users where users.id = task_dailies.user_verify_id ) as 'Verified By'
+    ->     ->     -> FROM task_plans a
+    ->     ->     -> RIGHT JOIN task_dailies b ON a.id = b.plan_id
+    ->     ->     -> INNER JOIN users c ON b.id = c.id
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '>     -> a.id, a.task_name, b.task_status, b.task_comments, d.category_name a...' at line 2
